@@ -155,8 +155,31 @@ Change the directory permissions of */var/www and its subdirectories to add grou
 sudo chmod 2775 /var/www
 find /var/www -type d -exec sudo chmod 2775 {} \;
 
-Recursively change the file permissions of /var/www and its subdirectories:
+Recursively change the file permissions of /var/www and its subdirectories(This command will take 6 to 7 minutes to run and return to the Shell prompt):
 find /var/www -type f -exec sudo chmod 0644 {} \;
+
+For the Apache web server to pick up the new group and permissions, restart the Apache web server by running the following command from the Shell prompt:
+sudo systemctl restart httpd
+
+<h1>Task 8: Launching WordPress installation script</h1>
+launch and access the WordPress site to verify successful installation
+
+Ensure that the httpd and database services start at every system boot:
+sudo systemctl enable httpd && sudo systemctl enable mariadb
+
+
+<img width="1088" height="128" alt="Screenshot 2026-01-13 at 1 17 28 AM" src="https://github.com/user-attachments/assets/31df0ad3-2774-4950-bd87-64750c52ad69" />
+
+verify that the database server and Apache web server (httpd) are launched:
+sudo systemctl status mariadb
+sudo systemctl status httpd
+
+You will notice that both mariadb.service and httpd.service (around the middle of the page) are in Active: active (running) state. Output has been truncated.
+
+
+<img width="1363" height="858" alt="Screenshot 2026-01-13 at 1 19 12 AM" src="https://github.com/user-attachments/assets/43687282-55d6-4c48-b4ec-6dac0efc180d" />
+
+
 
 
 
